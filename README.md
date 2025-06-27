@@ -2,7 +2,11 @@
 A simple full-stack app that summarizes text in real-time using LLMs like Gemini Flash. Built for speed, clarity, and easy deployment.
 
 ## 🚀 Live Demo
+### Frontend
 [Coming soon — deployed with Vercel (frontend) + Render (backend)]
+
+### Backend
+https://smart-summary-backend.onrender.com/
 
 ## ⚙️ How It Works
 Here’s a quick look at the setup:
