@@ -69,7 +69,11 @@ export default function Home() {
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             try {
-              const jsonStr = line.slice(6);
+              let jsonStr = line.slice(6);
+              if (jsonStr.startsWith('data: ')) {
+                jsonStr = jsonStr.slice(6);
+              }
+              
               console.log("Parsing JSON:", jsonStr);
               
               const data: SummaryChunk = JSON.parse(jsonStr);
