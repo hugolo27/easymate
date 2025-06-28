@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 interface SummaryRequest {
@@ -20,7 +20,12 @@ export default function Home() {
   const [error, setError] = useState("");
   const summaryRef = useRef<HTMLDivElement>(null);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://smart-summary-backend.onrender.com";
+
+  // Debug: Log when summary changes
+  useEffect(() => {
+    console.log("Summary state changed to:", summary);
+  }, [summary]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +35,8 @@ export default function Home() {
     setLoading(true);
 
     try {
+      console.log("Making request to:", `${apiUrl}/summarize`);
+      
       const response = await fetch(`${apiUrl}/summarize`, {
         method: "POST",
         headers: { 
@@ -55,21 +62,28 @@ export default function Home() {
         if (done) break;
 
         const chunk = new TextDecoder().decode(value);
+        console.log("Received chunk:", chunk);
+        
         const lines = chunk.split('\n');
 
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             try {
               const jsonStr = line.slice(6);
+              console.log("Parsing JSON:", jsonStr);
+              
               const data: SummaryChunk = JSON.parse(jsonStr);
+              console.log("Parsed data:", data);
               
               if (data.type === "summary_chunk" && data.content) {
                 fullText += data.content;
+                console.log("Setting summary to:", fullText);
                 setSummary(fullText);
               } else if (data.type === "error") {
                 throw new Error(data.content);
               }
             } catch (parseError) {
+              console.log("Parse error for line:", line, parseError);
               continue;
             }
           }
