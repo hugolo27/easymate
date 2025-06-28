@@ -9,7 +9,7 @@ https://smart-summary-frontend.vercel.app/
 https://smart-summary-backend.onrender.com/
 
 ## ⚙️ How It Works
-Here’s a quick look at the setup:
+Here's a quick look at the setup:
 
 ### Tech Stack
 - Frontend: Next.js 14 + React + Tailwind CSS
@@ -74,7 +74,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 - Open http://localhost:3000
 - Paste or type in up to 10,000 characters of text
 - Adjust the summary length (slider from 50 to 500 chars)
-- Click “Summarize”
+- Click "Summarize"
 - Watch the output stream in real time as the LLM generates it
 
 ### 🔌 API Endpoints
@@ -128,12 +128,42 @@ Solid free tier, great integration with LangChain, and fast responses.
 #### Why Vercel + Render?
 They offer great free plans, auto-scaling, and are super dev-friendly for Python and Next.js apps.
 
+### 🔮 Future Improvements
+- **Multi-language Support**: Add language detection and translation capabilities
+- **Summary Styles**: Different summary types (bullet points, executive summary, etc.)
+- **File Upload**: Support for PDF, DOCX, and TXT file uploads
+- **User Authentication**: User accounts to save and manage summaries
+- **Summary History**: Database to store and retrieve past summaries
+- **Export Options**: Download summaries as PDF, Word, or plain text
+- **Advanced Settings**: Customize LLM parameters (temperature, model selection)
+
+### 📈 Scaling Considerations
+- **Load Balancing**: Implement multiple backend instances behind a load balancer
+- **Caching**: Redis cache for frequently requested summaries
+- **Database**: PostgreSQL for user data and summary history
+- **CDN**: CloudFlare or AWS CloudFront for static assets
+- **Queue System**: Celery with Redis for handling large summarization jobs
+- **Monitoring**: Prometheus + Grafana for performance monitoring
+- **Auto-scaling**: Kubernetes or Docker Swarm for container orchestration
+- **Rate Limiting**: Implement per-user and per-IP rate limits
+- **Microservices**: Split into separate services (auth, summarization, file processing) for future improvements
+
+### 🔒 Security Considerations
+- **API Key Management**: Secure storage of LLM API keys using environment variables
+- **Input Validation**: Sanitize and validate all user inputs to prevent injection attacks
+- **Rate Limiting**: Prevent abuse and ensure fair usage
+- **CORS Configuration**: Properly configured CORS headers for production
+- **HTTPS Only**: Enforce HTTPS in production environments
+- **Content Filtering**: Implement content moderation to prevent inappropriate summaries
+- **Data Privacy**: Clear data retention policies and user consent
+- **Authentication**: JWT tokens for user sessions
+- **Input Size Limits**: Prevent DoS attacks through large text submissions
+- **Logging & Monitoring**: Secure logging without exposing sensitive data
+
 ### 🐛 Common Issues
 - ModuleNotFoundError: Make sure you're in the correct project folder
 - Invalid API key: Double-check your .env file
 - CORS issues: Make sure frontend URL is allowed in backend
 - No stream: Ensure browser supports Server-Sent Events
-
-
 
 ## Built with care by Hugo López for the Smart Summary Technical Challenge ✨
