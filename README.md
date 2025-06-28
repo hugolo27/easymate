@@ -3,7 +3,7 @@ A simple full-stack app that summarizes text in real-time using LLMs like Gemini
 
 ## 🚀 Live Demo
 ### Frontend
-[Coming soon — deployed with Vercel (frontend) + Render (backend)]
+https://smart-summary-frontend.vercel.app/
 
 ### Backend
 https://smart-summary-backend.onrender.com/
